@@ -7,3 +7,9 @@
     @apply bg-[#000304] text-gray-300 !scrollbar-thin !scrollbar-track-transparent !scrollbar-thumb-[#6d28d9];
   }
 }
+
+@layer components {
+  .input {
+        @apply w-full rounded bg-[#333] px-5 py-3.5 placeholder-[gray] outline-none focus:bg-[#454545]
+    }
+}
