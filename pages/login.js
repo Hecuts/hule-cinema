@@ -91,7 +91,7 @@ const Login = () => {
 					</label>
 				</div>
 				<button
-					className="w-full rounded bg-[#7c3aed] py-3 font-semibold"
+					className="w-full rounded bg-[#651fdd] py-3 font-semibold hover:scale-105 hover:bg-[#7c3aed]"
 					type="submit"
 					onClick={() => setLogin(true)}
 				>

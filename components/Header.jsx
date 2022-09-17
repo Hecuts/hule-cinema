@@ -8,8 +8,10 @@ import {
 	SearchIcon,
 	UserIcon,
 } from "@heroicons/react/outline";
+import useAuth from "../hooks/useAuth";
 
 const Header = () => {
+	const { logout } = useAuth();
 	return (
 		<header className="flex flex-col sm:flex-row m-5 justify-between items-center h-auto">
 			<Image
@@ -25,7 +27,7 @@ const Header = () => {
 				<HeaderItems title="VERIFIED" Icon={BadgeCheckIcon} />
 				<HeaderItems title="COLLECTIONS" Icon={CollectionIcon} />
 				<HeaderItems title="SEARCH" Icon={SearchIcon} />
-				<HeaderItems title="ACCOUNT" Icon={UserIcon} />
+				<HeaderItems title="ACCOUNT" Icon={UserIcon} onClick={logout} />
 			</div>
 		</header>
 	);
