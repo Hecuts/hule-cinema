@@ -1,15 +1,27 @@
 import { ThumbUpIcon } from "@heroicons/react/outline";
 import { forwardRef } from "react";
-
 import Image from "next/image";
+import { modalState, MovieState } from "../atoms/modalAtom";
+import { useRecoilState } from "recoil";
+
 const BASE_URL = "https://image.tmdb.org/t/p/original/";
+
+// Styles
+const thumbnail = `relative group cursor-pointer p-2 transition duration-200 ease-in transform sm:hover:scale-105 hover:z-50 min-w-[28rem]`;
+const MovieTitle = `absolute top-2 left-4 text-2xl md:text-xl font-semibold group-hover:text-white transition-all duration-100 ease-in-out group-hover:font-bold`;
 
 // eslint-disable-next-line react/display-name
 const Thumbnail = forwardRef(({ result }, ref) => {
+	const [currentMovie, setCurrentMovie] = useRecoilState(MovieState);
+	const [showmodal, setShowModal] = useRecoilState(modalState);
 	return (
 		<div
 			ref={ref}
-			className="relative group cursor-pointer p-2 transition duration-200 ease-in transform sm:hover:scale-105 hover:z-50 min-w-[28rem]"
+			className={thumbnail}
+			onClick={() => {
+				setCurrentMovie(result);
+				setShowModal(true);
+			}}
 		>
 			<Image
 				layout="responsive"
@@ -35,9 +47,7 @@ const Thumbnail = forwardRef(({ result }, ref) => {
 					</p>
 				</div>
 
-				<h2 className="absolute top-2 left-4 text-2xl md:text-xl font-semibold group-hover:text-white transition-all duration-100 ease-in-out group-hover:font-bold">
-					{result.title || result.original_name}
-				</h2>
+				<h2 className={MovieTitle}>{result.title || result.original_name}</h2>
 				<p className="flex item-center opacity-0 group-hover:opacity-100 text-[#7c3aed]">
 					{result.media_type && `${result.media_type} .`}{" "}
 					{result.release_date || result.first_air_date} .{" "}
